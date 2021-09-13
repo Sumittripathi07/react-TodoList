@@ -9,3 +9,14 @@
     font-size: 18px;
     justify-content: space-between;
   }
+
+  .newCard{
+    background-color: #749bbc;
+}
+.newCard2{
+    
+    color: white;
+    border-radius: 16px;
+    background-color: #322576;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

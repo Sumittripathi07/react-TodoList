@@ -1,13 +1,10 @@
-
-
-
 import React,{useState} from 'react'
 import Part2 from './Part2'
-
-
-
+// import { Button } from '@material-ui/core'
 
 export default function Part1() {
+    const [text, settext] = useState("")
+    const [main, setmain] = useState([])
 
     const handelSubmit=(event)=>{
         event.preventDefault()
@@ -18,29 +15,37 @@ export default function Part1() {
         settext(event.target.value)
     }
      
-    const [text, settext] = useState("")
-    const [text2, settext2] = useState("")
 
     const handelClick=()=>{
+        settext(' ')
         if (text.length>=1) {
-            settext2(text)
-            settext("")
+            setmain((oldItems)=>{
+                return[...oldItems,text]
+            
+            })
         }
     }
+
+
     return (
         <div>
             <h6 className="mb-3">Todo List</h6>
 
             <form className="d-flex justify-content-center align-items-center mb-4" onSubmit={handelSubmit}>
                 <div className="form-outline flex-fill">
-                    <input type="text" id="form1" className="form-control form-control-lg" value={text} onChange={handelChange} />
+                    <input placeholder="Enter your Item" type="text" id="form1" className="form-control form-control-lg" value={text} onChange={handelChange} />
                     <label className="form-label" htmlFor="form1">What do you need to do today?</label>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg ms-2 my-33" onClick={handelClick} >Add</button>
+                {/* <Button className="mb-4 mx-2" color="secondary" variant="contained" onClick={handelClick}>Add</Button> */}
+                <button style={{fontSize: "16px",backgroundColor:"#992020",border:"2px solid black",marginTop: "-31px"}} type="submit" className="btn btn-primary btn-lg ms-2 my-33" onClick={handelClick} >Add</button>
             </form>
 
+        {main.map((total)=>{
+            return <Part2 text={total} />
+        })}
             
-           <Part2 text={text2} />
+           
+           
         </div>
     )
 }
