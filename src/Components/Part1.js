@@ -18,7 +18,7 @@ export default function Part1() {
 
     const handelClick=()=>{
         settext(' ')
-        if (text.length>=1) {
+        if (text.length>1) {
             setmain((oldItems)=>{
                 return[...oldItems,text]
             
@@ -26,6 +26,13 @@ export default function Part1() {
         }
     }
 
+    const deleteItems=(id)=>{
+        setmain((oldItems)=>{
+            return oldItems.filter((arrItems,index)=>{
+                return index!==id ;
+            })
+        })
+      }
 
     return (
         <div>
@@ -40,8 +47,8 @@ export default function Part1() {
                 <button style={{fontSize: "16px",backgroundColor:"#992020",border:"2px solid black",marginTop: "-31px"}} type="submit" className="btn btn-primary btn-lg ms-2 my-33" onClick={handelClick} >Add</button>
             </form>
 
-        {main.map((total)=>{
-            return <Part2 text={total} />
+        {main.map((total,index)=>{
+            return <Part2 text={total} id={index} key={index} onDelete={deleteItems} />
         })}
             
            
